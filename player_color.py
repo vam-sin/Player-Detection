@@ -1,3 +1,5 @@
+# Even this requires the module lines
+
 import cv2
 import sys
 import numpy as np
@@ -217,11 +219,13 @@ def getPlayerColors(stands_mask,groundColorMask,img):
 
 if __name__ == '__main__' :
     # groundColorMask = cv2.imread("./mask.jpg")
-    img = cv2.imread("../image2/op4.png")
+    img = cv2.imread("../Old_Trial/Ball_Detection/frame.jpeg")
     img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 
+    # getGroundColor function only gets the range of the grass.
     rangeH,rangeS,rangeV = getGroundColor(img)
+    # This range of the grass is used to make the mask.
     groundColorMask = rangeToMask(img,[rangeH],[rangeS],[rangeV],0)
     # groundColorMask = rangeToMask(img,[0.22777777777777777, 0.32222222222222224], [0.08235294117647059, 0.4], [0.3843137254901961, 0.6352941176470588],0)
     rangeC = getPlayerColors(groundColorMask,img)
-    # print(rangeC)
+    print(rangeC)

@@ -1,3 +1,9 @@
+# Get the file "lines.py"
+# Takes in an image and gives the ground color range
+# The function for getStandMask
+# Get the frames as well
+# Have to take the outputs from both and merge them.
+
 import cv2
 import numpy as np
 from sklearn.cluster import MeanShift,estimate_bandwidth
@@ -122,6 +128,7 @@ def getGroundColor(img):
     img=np.array(img)
     pq=deepcopy(img)
     ic2=np.ones((1080,1920))
+    # Converts the image pixels range to [0,1]
     I=im2double(img)
     I = np.array(I)
     I=I.astype(np.float32)
@@ -279,13 +286,13 @@ def getGroundColor(img):
 
 if __name__ == '__main__':
 
-    rangeH=[0.2777777777777778, 0.39444444444444443] 
-    rangeS=[0.35294117647058826, 0.7294117647058823] 
+    rangeH=[0.2777777777777778, 0.39444444444444443]
+    rangeS=[0.35294117647058826, 0.7294117647058823]
     rangeV=[0.41568627450980394, 0.7490196078431373]
-    img = cv2.imread("./../Videos/imgs1/45.jpg", 1)
+    img = cv2.imread("../Old_Trial/Ball_Detection/frame.jpeg", 1)
     groundColorMask = rangeToMask(img,[rangeH],[rangeS],[rangeV])
     # cv2.imwrite("ground_mask_test.jpg",groundColorMask*255)
 
     stands_mask=getStandMask(groundColorMask)
     # cv2.imwrite("stands_mask_test.jpg",stands_mask*255)
-    # getGroundColor(img)
+    # print(getGroundColor(img))
