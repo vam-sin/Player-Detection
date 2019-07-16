@@ -3,6 +3,7 @@
 # The function for getStandMask
 # Get the frames as well
 # Have to take the outputs from both and merge them.
+# FFMPEG at 10 fps.
 
 import cv2
 import numpy as np
